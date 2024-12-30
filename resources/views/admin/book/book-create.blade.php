@@ -19,7 +19,7 @@
             <div class="row g-3 p-4">
                 <div class="col-12">
                     <label for="book_title" class="form-label">Book Title</label>
-                    <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Enter Book Title" required autofocus>
+                    <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Enter Book Title" required>
                     <small class="form-text text-danger">@error('book_title') {{ $message }} @enderror</small>
                 </div>
 

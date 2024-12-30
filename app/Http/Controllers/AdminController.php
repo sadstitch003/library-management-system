@@ -235,43 +235,46 @@ class AdminController
     {
         $validated = $request->validate([
             'book_title' => 'required|string|max:255',
-            'new_category' => 'nullable|string|max:255|unique:categories,category_name',
             'new_author' => 'nullable|string|max:255|unique:authors,author_name',
+            'new_category' => 'nullable|string|max:255|unique:categories,category_name',
         ]);
 
-        try {
-            if (!empty($validated['new_category'])) {
-                $category_id = DatabaseIdGenerator::generateCategoryId($validated['new_category']);
-                Category::create([
-                    'category_id' => $category_id,
-                    'category_name' => $validated['new_category'],
-                    'status_del' => false
-                ]);
-            } else {
-                $category_id = $request->validate(['category_id' => 'required|exists:categories,category_id']);
-            }
-        } catch (\Throwable $th) {
-            return redirect()->back()->withErrors([
-                'unexpectedError' => "Failed to handle category: " . $th->getMessage()
-            ]);
-        }
-
-        try {
-            if (!empty($validated['new_author'])) {
+    
+        if (!empty($validated['new_author'])) {
+            try {
                 $author_id = DatabaseIdGenerator::generateAuthorId($validated['new_author']);
                 Author::create([
                     'author_id' => $author_id,
                     'author_name' => $validated['new_author'],
                     'status_del' => false
                 ]);
-            } else {
-                $author_id = $request->validate(['author_id' => 'required|exists:authors,author_id']);
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors([
+                    'unexpectedError' => "Failed to handle author: " . $th->getMessage()
+                ]);
             }
-        } catch (\Throwable $th) {
-            return redirect()->back()->withErrors([
-                'unexpectedError' => "Failed to handle author: " . $th->getMessage()
-            ]);
+        } else {
+            $author_id = $request->validate(['author_id' => 'required|exists:authors,author_id']);
         }
+ 
+
+        if (!empty($validated['new_category'])) {
+            try {
+                $category_id = DatabaseIdGenerator::generateCategoryId($validated['new_category']);
+                Category::create([
+                    'category_id' => $category_id,
+                    'category_name' => $validated['new_category'],
+                    'status_del' => false
+                ]);
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors([
+                    'unexpectedError' => "Failed to handle category: " . $th->getMessage()
+                ]);
+            }
+        } else {
+            $category_id = $request->validate(['category_id' => 'required|exists:categories,category_id']);
+        }
+
 
         try {
             $book = Book::create([
@@ -286,7 +289,7 @@ class AdminController
         }
 
         try {
-            $book->authors()->attach($author_id);
+            $book->authors()->attach($author_id['author_id']);
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors([
                 'unexpectedError' => "Failed to attach author: " . $th->getMessage()
@@ -294,7 +297,7 @@ class AdminController
         }
 
         try {
-            $book->categories()->attach($category_id);
+            $book->categories()->attach($category_id['category_id']);
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors([
                 'unexpectedError' => "Failed to attach category: " . $th->getMessage()
@@ -323,7 +326,8 @@ class AdminController
                     'status_del' => false
                 ]);
             } else {
-                $publisher_id = $request->validate(['publisher_id' => 'required|exists:publishers,publisher_id']);
+                $validatedPublisher = $request->validate(['publisher_id' => 'required|exists:publishers,publisher_id']);
+                $publisher_id = $validatedPublisher['publisher_id'];
             }
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors([
