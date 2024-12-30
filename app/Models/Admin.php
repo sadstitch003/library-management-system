@@ -8,7 +8,7 @@ class Admin extends Authenticatable
 {
     protected $table = 'admins';
     protected $primaryKey = 'admin_id';
-    public $isIncrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'admin_id', 'admin_name', 'admin_email', 'admin_password', 'status_del'
