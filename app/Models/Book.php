@@ -36,7 +36,7 @@ class Book extends Model
                     ->where('status_del', false); 
     }
 
-    public function getAvailableBookCopy(): int
+    public function getAvailableBookCopyCount(): int
     {
         return $this->bookCopies()->where('is_available', true)
                     ->where('status_del', false)
