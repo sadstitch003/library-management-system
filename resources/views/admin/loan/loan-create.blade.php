@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 
-                <div class="col-12 text-end">
-                    <button type="submit" class="btn btn-primary">Save Loan</button>
+                <div class="col-12 pb-2 pt-4">
+                    <button type="submit" class="btn btn-primary col-12">Save Loan</button>
                 </div>
             </div>
         </form>

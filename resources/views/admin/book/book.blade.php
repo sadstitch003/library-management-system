@@ -54,8 +54,8 @@
                         @endforeach
                     </td>
                     <td>
-                        @if($book->getAvailableBookCopy() > 0)
-                            <span>{{ $book->getAvailableBookCopy() }}</span>
+                        @if($book->getAvailableBookCopyCount() > 0)
+                            <span>{{ $book->getAvailableBookCopyCount() }}</span>
                         @else
                             <span class="text-danger">Not Available</span>
                         @endif
