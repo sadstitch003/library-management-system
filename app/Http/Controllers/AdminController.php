@@ -289,7 +289,7 @@ class AdminController
         }
 
         try {
-            $book->authors()->attach($author_id['author_id']);
+            $book->authors()->attach($author_id);
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors([
                 'unexpectedError' => "Failed to attach author: " . $th->getMessage()
@@ -297,7 +297,7 @@ class AdminController
         }
 
         try {
-            $book->categories()->attach($category_id['category_id']);
+            $book->categories()->attach($category_id);
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors([
                 'unexpectedError' => "Failed to attach category: " . $th->getMessage()
