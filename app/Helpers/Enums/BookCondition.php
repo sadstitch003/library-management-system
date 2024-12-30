@@ -4,8 +4,7 @@ namespace App\Helpers\Enums;
 
 enum BookCondition: string
 {
-    case GOOD = 'Good'; 
-    case USED = 'Used'; 
-    case DAMAGED = 'Damaged';
-    case POOR = 'Poor';
+    case GOOD = 'Good';
+    case SLIGHT_DAMAGE = 'Slight Damage'; 
+    case SEVERE_DAMAGE = 'Severe Damage';
 }

@@ -18,18 +18,21 @@ class AuthorSeeder extends Seeder
             [
                 'author_id' => DatabaseIdGenerator::generateAuthorId('J.K. Rowling'),
                 'author_name' => 'J.K. Rowling',
+                'status_del' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'author_id' => DatabaseIdGenerator::generateAuthorId('George Orwell'),
                 'author_name' => 'George Orwell',
+                'status_del' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'author_id' => DatabaseIdGenerator::generateAuthorId('J.R.R. Tolkien'),
                 'author_name' => 'J.R.R. Tolkien',
+                'status_del' => false,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

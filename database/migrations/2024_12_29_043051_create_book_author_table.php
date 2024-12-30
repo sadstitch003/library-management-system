@@ -9,8 +9,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('book_author', function (Blueprint $table) {
-            $table->string('author_id');
-            $table->string('book_id');
+            $table->string('author_id')->index();
+            $table->string('book_id')->index();
             $table->primary(['author_id', 'book_id']);
             $table->timestamps();
 

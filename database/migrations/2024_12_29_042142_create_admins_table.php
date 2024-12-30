@@ -8,9 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->string('author_id')->primary()->index();
-            $table->string('author_name');
+        Schema::create('admins', function (Blueprint $table) {
+            $table->string('admin_id')->primary();
+            $table->string('admin_name');
+            $table->string('admin_email');
+            $table->string('admin_password');
             $table->boolean('status_del');
             $table->timestamps();
         });
@@ -18,6 +20,7 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('admins');
     }
 };
+
