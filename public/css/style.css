@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(225, 225, 225);
+}
+
+table, th, td, tr {
+    background-color: transparent;
+}
+
+.sidebar {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    min-height: 100vh;
+    height: 100%;
+}
+
+.bg-1 {
+    background-color: rgb(250, 250, 250);;
+}
+
+.card {
+    box-shadow: 0 0 1 rgba(0, 0, 0, 0.2);
+    background-color: rgb(250, 250, 250);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+

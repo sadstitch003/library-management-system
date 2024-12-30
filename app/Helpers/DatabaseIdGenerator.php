@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Models\BookCopy;
 use App\Models\Category;
 use App\Models\Member;
-use App\Models\Staff;
+use App\Models\admin;
 use App\Models\Loan;
 use Carbon\Carbon;
 
@@ -98,7 +98,7 @@ class DatabaseIdGenerator
         return $abbreviation . $counter;
     }
 
-    public static function generateStaffId($name) {
+    public static function generateadminId($name) {
         $name = preg_replace('/[^a-zA-Z\s]/', ' ', $name);
         $words = explode(' ', $name);
         $abbreviation = '';
@@ -119,7 +119,7 @@ class DatabaseIdGenerator
         }
 
         $counter = 1;
-        while (Staff::where('staff_id', $abbreviation . $counter)->exists()) {
+        while (admin::where('admin_id', $abbreviation . $counter)->exists()) {
             $counter++;
         }
 
@@ -157,11 +157,11 @@ class DatabaseIdGenerator
     public static function generateBookCopyId($title, $year) {
 
         $counter = 1;
-        while (BookCopy::where('book_copy_id', $title . '-' . $year . '-' . $counter)->exists()) {
+        while (BookCopy::where('book_copy_id', $title . '-' . $year . '-' . str_pad($counter, 3, '0', STR_PAD_LEFT))->exists()) {
             $counter++;
         }
 
-        return $title . '-' . $year . '-' . $counter;
+        return $title . '-' . $year . '-' . str_pad($counter, 3, '0', STR_PAD_LEFT);
     }
 
     public static function generateLoanId() {

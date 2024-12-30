@@ -9,8 +9,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('publishers', function (Blueprint $table) {
-            $table->string('publisher_id')->primary();
+            $table->string('publisher_id')->primary()->index();
             $table->string('publisher_name'); 
+            $table->boolean('status_del');
             $table->timestamps();
         });
     }

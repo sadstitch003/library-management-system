@@ -14,12 +14,13 @@ class DatabaseSeeder extends Seeder
             AuthorSeeder::class,
             CategorySeeder::class,
             BookSeeder::class,
+            PublisherSeeder::class,
             BookCopySeeder::class,
             MemberSeeder::class,
-            StaffSeeder::class,
+            AdminSeeder::class,
             LoanSeeder::class,
-            PublisherSeeder::class,
-            BookAuthorSeeder::class
+            BookAuthorSeeder::class,
+            BookCategorySeeder::class
         ]);
     }
 }
